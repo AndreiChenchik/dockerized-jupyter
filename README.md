@@ -2,6 +2,9 @@
 
 Based on https://hub.docker.com/r/jupyter/datascience-notebook/ from https://github.com/jupyter/docker-stacks
 
+## As simple as
+```docker run -p 8888:8888 gumlooter/dockerized_jupyter:latest```
+
 ## Additions
 
 ### Python
