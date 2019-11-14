@@ -2,7 +2,7 @@
 
 Based on https://hub.docker.com/r/jupyter/datascience-notebook/ from https://github.com/jupyter/docker-stacks
 
-[![](https://images.microbadger.com/badges/image/gumlooter/dockerized_jupyter.svg)](https://hub.docker.com/r/gumlooter/dockerized_jupyter "DockerHub") [![](https://images.microbadger.com/badges/version/gumlooter/dockerized_jupyter.svg)](https://hub.docker.com/r/gumlooter/dockerized_jupyter "DockerHub")
+[![Telegram](https://img.shields.io/badge/telegram-chat%20with%20me-blueviolet)](https://t.me/gumlooter "Open Telegram with gumlooter") [![](https://images.microbadger.com/badges/image/gumlooter/dockerized_jupyter.svg)](https://hub.docker.com/r/gumlooter/dockerized_jupyter "DockerHub") [![](https://images.microbadger.com/badges/version/gumlooter/dockerized_jupyter.svg)](https://hub.docker.com/r/gumlooter/dockerized_jupyter "DockerHub")
 
 ![WYSIWYG](https://github.com/gumlooter/dockerized_jupyter/raw/master/screenshot.png "Funny title")
 
