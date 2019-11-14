@@ -1,5 +1,4 @@
-# dockerized_jupyter
-Jupyter Docker Stack with extra flavour for everyday tasks
+# Jupyter Docker Stack with extra flavour for everyday tasks
 
 Based on https://hub.docker.com/r/jupyter/datascience-notebook/ from https://github.com/jupyter/docker-stacks
 
