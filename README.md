@@ -11,6 +11,10 @@ Based on https://hub.docker.com/r/jupyter/datascience-notebook/ from https://git
 
 ## Additions
 
+### Linux
+* jq
+* openssh-client
+
 ### Python
 * gspread
 * oauth2client
