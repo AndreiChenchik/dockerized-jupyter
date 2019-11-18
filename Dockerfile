@@ -3,7 +3,7 @@ FROM jupyter/datascience-notebook
 USER root
 
 RUN apt-get update && \
-	apt-get install -y --no-install-recommends jq && \
+	apt-get install -y --no-install-recommends jq openssh-client && \
 	rm -rf /var/lib/apt/lists/* && \
 	mkdir -p /usr/local/bin/before-notebook.d && \
 	echo 'node /opt/conda/share/jupyter/lab/staging/node_modules/jsonrpc-ws-proxy/dist/server.js --port 3000 --languageServers /home/jovyan/servers.yml' > /usr/local/bin/lsp.sh && \
