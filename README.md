@@ -21,6 +21,7 @@ Based on https://hub.docker.com/r/jupyter/datascience-notebook/ from https://git
 * pyopenssl
 * psycopg2
 * pymystem3
+* tensorflow (1.15)
 
 ### R
 * hmisc
