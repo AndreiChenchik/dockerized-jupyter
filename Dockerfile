@@ -60,4 +60,6 @@ RUN conda install -c conda-forge -y \
 	jupyter serverextension enable jupyterlab_sql --py --sys-prefix && \
 	jupyter serverextension enable --py jupyterlab_code_formatter && \
 	jupyter lab build && \
-	printf "langservers:\n  python:\n    - pyls" > /home/jovyan/servers.yml
+	printf "langservers:\n  python:\n    - pyls" > /home/jovyan/servers.yml && \
+    	fix-permissions $CONDA_DIR && \
+    	fix-permissions /home/$NB_USER
