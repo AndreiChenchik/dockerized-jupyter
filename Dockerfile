@@ -28,6 +28,8 @@ RUN conda install -c conda-forge -y \
 		python-language-server \
 		python-jsonrpc-server \
 		psycopg2 && \
+	conda install -c plotly -y \
+		plotly && \
 	conda install -c r -y \
 		r-hmisc \
 		r-psych \
@@ -55,8 +57,10 @@ RUN conda install -c conda-forge -y \
 	jq -c '.autosavetime_set_starting_interval = true' /home/jovyan/.jupyter/nbconfig/notebook.json > tmp.$$.json && \
 	mv tmp.$$.json /home/jovyan/.jupyter/nbconfig/notebook.json && \
 	nbdime extensions --enable && \
-	jupyter labextension install @ryantam626/jupyterlab_code_formatter && \
-	jupyter labextension install @jupyterlab/toc && \
+	jupyter labextension install @ryantam626/jupyterlab_code_formatter --no-build && \
+	jupyter labextension install @jupyterlab/toc --no-build && \
+	jupyter labextension install jupyterlab-plotly --no-build && \
+	jupyter labextension install plotlywidget --no-build && \
 	jupyter serverextension enable jupyterlab_sql --py --sys-prefix && \
 	jupyter serverextension enable --py jupyterlab_code_formatter && \
 	jupyter lab build && \
