@@ -22,6 +22,11 @@ Based on https://hub.docker.com/r/jupyter/datascience-notebook/ from https://git
 * psycopg2
 * pymystem3
 * tensorflow (1.15)
+* plotly
+jupyter labextension install jupyterlab-plotly@1.3.0 --no-build
+
+# FigureWidget support
+jupyter labextension install plotlywidget@1.3.0 --no-build
 
 ### R
 * hmisc
@@ -46,6 +51,8 @@ Based on https://hub.docker.com/r/jupyter/datascience-notebook/ from https://git
 * varInspector/main
 * code_prettify/autopep8
 * toc2/main
+* jupyterlab-plotly
+* plotlywidget
 
 ---
 Can be deployed to GCP using https://github.com/gumlooter/infra
