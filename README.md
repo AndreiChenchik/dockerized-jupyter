@@ -23,6 +23,7 @@ Based on https://hub.docker.com/r/jupyter/datascience-notebook/ from https://git
 * pymystem3
 * tensorflow (1.15)
 * plotly
+* dash
 jupyter labextension install jupyterlab-plotly@1.3.0 --no-build
 
 # FigureWidget support
