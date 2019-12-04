@@ -45,6 +45,7 @@ RUN conda install -c conda-forge -y \
 	pip install python-language-server[all] && \
 	pip install jupyterlab_sql && \
 	pip install 'tensorflow==1.15' && \
+	pip install dash && \
 	jupyter nbextension enable freeze/main && \
 	jupyter nbextension enable autosavetime/main && \
 	jupyter nbextension enable collapsible_headings/main && \
