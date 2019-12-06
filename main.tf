@@ -110,7 +110,7 @@ resource "kubernetes_service" "jupyter_loadbalancer" {
     
     port {
       # expose main port of jupyter container
-      name = "main_port"
+      name = "main-port"
       port = var.external_port
       target_port = var.jupyter_port
     }    
