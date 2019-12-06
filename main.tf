@@ -141,13 +141,12 @@ resource "kubernetes_service" "node_port" {
       # expose main port of jupyter container
       name = "main-port"
       port = var.jupyter_port
-      target_port = var.jupyter_port
+      node_port = var.external_port
     }    
   
     type = "NodePort"
   }
 }
-
 
 # declare external ip 
 output "external_ip" {
