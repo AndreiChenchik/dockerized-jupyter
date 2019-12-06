@@ -1,8 +1,8 @@
 # HOW TO USE:
 # add following to your terraform config
 #module "jupyter" {
-#  source = "github.com/gumlooter/dockerized_jupyter"
-#  module_count = 1 # 0 to turn it off
+#  source = "git@github.com:gumlooter/dockerized_jupyter.git"
+#  count = 1 # 0 to turn it off
 #  node_pool = google_container_node_pool.nodes
 #  persistent_disk = "development-storage"
 #  external_port = 443
@@ -97,4 +97,9 @@ resource "kubernetes_service" "jupyter_loadbalancer" {
   
     type = "LoadBalancer"
   }
+}
+
+# declare external ip 
+output "external_ip" {
+  value = kubernetes_service.jupyter_loadbalancer[0].load_balancer_ingress.0.ip
 }
