@@ -57,7 +57,7 @@ variable "args" {
 }
 
 variable "terraform_timeout" {
-  default = "10m"
+  default = "20m"
 }
 
 variable "jupyter_port" {
