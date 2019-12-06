@@ -93,8 +93,8 @@ resource "kubernetes_service" "jupyter_loadbalancer" {
 
   metadata {}
 
-  # wait for gke node pool
-  depends_on = [var.node_pool, kubernetes_deployment.jupyter_deployment]
+  # wait for deployment
+  depends_on = [kubernetes_deployment.jupyter_deployment]
   
   spec {
     selector = {
