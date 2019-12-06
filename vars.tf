@@ -48,7 +48,7 @@ variable "terraform_timeout" {
   default = "10m"
 }
 
-variable "main_port" {
+variable "jupyter_port" {
   default = "8888"
 }
 
