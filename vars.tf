@@ -7,7 +7,7 @@ variable "persistent_disk" {}
 variable "external_port" {}
 
 #internal variables
-variable "jupyter.app_name" {
+variable "app_name" {
   default="jupyter"
 }
 
