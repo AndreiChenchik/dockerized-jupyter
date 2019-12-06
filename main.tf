@@ -68,13 +68,13 @@ resource "kubernetes_deployment" "jupyter_deployment" {
             name = "persistent-volume"
           }      
         }
-        
-        # terraform: give container more time to load image (it's huge)
-        timeouts {
-          create = var.terraform_timeout
-        }
       }      
     }
+  }
+  
+  # terraform: give container more time to load image (it's huge)
+  timeouts {
+    create = var.terraform_timeout
   }
 }
 
