@@ -44,9 +44,7 @@ variable "args" {
     "--NotebookApp.ip='0.0.0.0'",
     "--NotebookApp.token=''",
     "--NotebookApp.keyfile=/home/jovyan/work/cert/notebook.key",
-    "--NotebookApp.certfile=/home/jovyan/work/cert/notebook.crt",
-    "--NotebookApp.custom_display_url=${var.public_url}",
-    "--NotebookApp.password=${var.password}"]
+    "--NotebookApp.certfile=/home/jovyan/work/cert/notebook.crt"
   ]
 }
 
