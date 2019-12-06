@@ -22,7 +22,11 @@ resource "kubernetes_deployment" "jupyter_deployment" {
   # create resource only if there it's required
   count = local.onoff_switch
 
-  metadata {}
+  metadata {
+    labels = {
+      app = var.app_name
+    }
+  }
   
   # wait for gke node pool
   depends_on = [var.node_pool]
@@ -89,6 +93,9 @@ resource "kubernetes_service" "jupyter_loadbalancer" {
 
   metadata {}
 
+  # wait for gke node pool
+  depends_on = [var.node_pool, kubernetes_deployment.jupyter_deployment]
+  
   spec {
     selector = {
       # choose only jupyter
