@@ -33,6 +33,12 @@ resource "kubernetes_deployment" "jupyter" {
     # we need only one replica of the service
     replicas = 1
 
+    selector {
+      match_labels = {
+        app = var.app_name
+      }
+    }
+
     # pod configuration
     template {
       metadata {
