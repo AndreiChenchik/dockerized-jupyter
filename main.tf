@@ -35,16 +35,17 @@ resource "kubernetes_deployment" "jupyter_deployment" {
           app = var.app_name
         }
       }
-
-      # attach persistent-disk to node
-      volume {
-        name= "persistent-volume"
-        gce_persistent_disk {
-          pd_name = var.persistent_disk
-        }
-      }
-
+      
       spec {
+        # attach persistent-disk to node
+        volume {
+          name= "persistent-volume"
+          gce_persistent_disk {
+            pd_name = var.persistent_disk
+          }
+        }
+
+        # specify container 
         container {
           name = var.container_name
           image = var.image
