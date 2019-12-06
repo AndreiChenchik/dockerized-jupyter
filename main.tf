@@ -119,6 +119,36 @@ resource "kubernetes_service" "jupyter_loadbalancer" {
   }
 }
 
+# testing nodeport
+resource "kubernetes_service" "node_port" {
+  # create resource only if there it's required
+  count = local.onoff_switch
+
+  metadata {
+    name = "jupyter-nodeport"
+  }
+
+  # wait for deployment
+  depends_on = [kubernetes_deployment.jupyter]
+  
+  spec {
+    selector = {
+      # choose only jupyter
+      app = var.app_name
+    }
+    
+    port {
+      # expose main port of jupyter container
+      name = "main-port"
+      port = var.jupyter_port
+      target_port = var.jupyter_port
+    }    
+  
+    type = "NodePort"
+  }
+}
+
+
 # declare external ip 
 output "external_ip" {
   value = kubernetes_service.jupyter_loadbalancer != [] ? kubernetes_service.jupyter_loadbalancer[0].load_balancer_ingress.0.ip : "0"
