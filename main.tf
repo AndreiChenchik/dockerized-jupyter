@@ -80,8 +80,10 @@ resource "kubernetes_deployment" "jupyter_deployment" {
 # add load balancer to drive external traffic to pod
 resource "kubernetes_service" "jupyter_loadbalancer" {
   # create resource only if there it's required
-  count = var.onoff_switch
-  
+  count = local.onoff_switch
+
+  metadata {}
+    
   spec {
     selector = {
       # choose only jupyter
