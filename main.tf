@@ -14,6 +14,7 @@
 locals {
   # decide to run or not to run based on count input
   onoff_switch = var.module_count != 1 ? 0 : 1
+  args = concat(var.args, ["--NotebookApp.custom_display_url=${var.public_url}","--NotebookApp.password=${var.password}"])
 }
 
 # schedule Jupyter Notebook
@@ -52,7 +53,7 @@ resource "kubernetes_deployment" "jupyter_deployment" {
           name = var.container_name
           image = var.image
           command = var.command
-          args = var.args
+          args = local.args
           
           # all the jupyter settings
           env {
