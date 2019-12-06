@@ -23,7 +23,7 @@ resource "kubernetes_deployment" "jupyter" {
   count = local.onoff_switch
 
   metadata {
-    name = var.app_name
+    name = var.deployment_name
   }
   
   # wait for gke node pool
