@@ -38,6 +38,7 @@ resource "kubernetes_deployment" "jupyter_deployment" {
 
       spec {
         container {
+          name = var.container_name
           image = var.image
           command = var.command
           args = var.args
@@ -83,7 +84,7 @@ resource "kubernetes_service" "jupyter_loadbalancer" {
   count = local.onoff_switch
 
   metadata {}
-    
+
   spec {
     selector = {
       # choose only jupyter
