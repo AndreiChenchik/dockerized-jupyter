@@ -19,6 +19,10 @@ variable "deployment_name" {
   default="jupyter-deployment"
 }
 
+variable "service_name" {
+  default="jupyter-service"
+}
+
 variable "image" {
   default="gumlooter/dockerized_jupyter:latest"
 }
