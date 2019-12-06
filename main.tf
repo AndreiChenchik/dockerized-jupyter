@@ -107,5 +107,5 @@ resource "kubernetes_service" "jupyter_loadbalancer" {
 
 # declare external ip 
 output "external_ip" {
-  value = kubernetes_service.jupyter_loadbalancer[0].load_balancer_ingress.0.ip
+  value = kubernetes_service.jupyter_loadbalancer != [] ? kubernetes_service.jupyter_loadbalancer[0].load_balancer_ingress.0.ip : "0"
 }
