@@ -20,6 +20,8 @@ locals {
 resource "kubernetes_deployment" "jupyter_deployment" {
   # create resource only if there it's required
   count = local.onoff_switch
+
+  metadata {}
   
   # wait for gke node pool
   depends_on = [var.node_pool]
@@ -35,7 +37,7 @@ resource "kubernetes_deployment" "jupyter_deployment" {
           app = var.app_name
         }
       }
-      
+
       spec {
         # attach persistent-disk to node
         volume {
