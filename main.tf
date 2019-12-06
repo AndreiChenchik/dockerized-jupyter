@@ -40,7 +40,7 @@ resource "kubernetes_deployment" "jupyter_deployment" {
         container {
           image = var.image
           command = var.command
-          args = local.args      
+          args = var.args
           
           # all the jupyter settings
           env {
@@ -50,7 +50,7 @@ resource "kubernetes_deployment" "jupyter_deployment" {
           
           # expose ports
           port {
-            container_port = var.main_port
+            container_port = var.jupyter_port
           }
 
           # attach persistent-disk to node
