@@ -2,7 +2,7 @@
 # add following to your terraform config
 #module "jupyter" {
 #  source = "git@github.com:gumlooter/dockerized_jupyter.git"
-#  count = 1 # 0 to turn it off
+#  module_count = 1 # 0 to turn it off
 #  node_pool = google_container_node_pool.nodes
 #  persistent_disk = "development-storage"
 #  external_port = 443
@@ -13,7 +13,7 @@
 # calculate local vars based on input vars
 locals {
   # decide to run or not to run based on count input
-  onoff_switch = var.count != 1 ? 0 : 1
+  onoff_switch = var.module_count != 1 ? 0 : 1
 }
 
 # schedule Jupyter Notebook
