@@ -11,6 +11,10 @@ variable "app_name" {
   default="jupyter"
 }
 
+variable "container_name" {
+  default="jupyter_container"
+}
+
 variable "image" {
   default="gumlooter/dockerized_jupyter:latest"
 }
