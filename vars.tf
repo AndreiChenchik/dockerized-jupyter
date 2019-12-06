@@ -12,11 +12,11 @@ variable "app_name" {
 }
 
 variable "container_name" {
-  default="jupyter_container"
+  default="jupyter-container"
 }
 
 variable "deployment_name" {
-  default="jupyter_deployment"
+  default="jupyter-deployment"
 }
 
 variable "image" {
