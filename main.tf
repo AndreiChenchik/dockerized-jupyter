@@ -95,7 +95,9 @@ resource "kubernetes_service" "jupyter_loadbalancer" {
   # create resource only if there it's required
   count = local.onoff_switch
 
-  metadata {}
+  metadata {
+    name = var.service_name
+  }
 
   # wait for deployment
   depends_on = [kubernetes_deployment.jupyter]
