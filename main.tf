@@ -36,6 +36,14 @@ resource "kubernetes_deployment" "jupyter_deployment" {
         }
       }
 
+      # attach persistent-disk to node
+      volume {
+        name= "persistent-volume"
+        gce_persistent_disk {
+          pd_name = var.persistent_disk
+        }
+      }
+
       spec {
         container {
           name = var.container_name
@@ -54,14 +62,6 @@ resource "kubernetes_deployment" "jupyter_deployment" {
             container_port = var.jupyter_port
           }
 
-          # attach persistent-disk to node
-          volume {
-            name= "persistent-volume"
-            gce_persistent_disk {
-              pd_name = var.persistent_disk
-            }
-          }
-
           # mount disk to container
           volume_mount {
             mount_path = var.persistent_mount_path
@@ -71,7 +71,7 @@ resource "kubernetes_deployment" "jupyter_deployment" {
       }      
     }
   }
-  
+
   # terraform: give container more time to load image (it's huge)
   timeouts {
     create = var.terraform_timeout
