@@ -1,5 +1,5 @@
 # external variables 
-variable "count" {}
+variable "module_count" {}
 variable "node_pool" {}
 variable "public_url" {}
 variable "password" {}
