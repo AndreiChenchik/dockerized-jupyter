@@ -18,13 +18,13 @@ locals {
 }
 
 # schedule Jupyter Notebook
-resource "kubernetes_deployment" "jupyter_deployment" {
+resource "kubernetes_deployment" "jupyter" {
   # create resource only if there it's required
   count = local.onoff_switch
 
   metadata {
     labels = {
-      app = var.app_name
+      name = var.app_name
     }
   }
   
@@ -94,7 +94,7 @@ resource "kubernetes_service" "jupyter_loadbalancer" {
   metadata {}
 
   # wait for deployment
-  depends_on = [kubernetes_deployment.jupyter_deployment]
+  depends_on = [kubernetes_deployment.jupyter]
   
   spec {
     selector = {
