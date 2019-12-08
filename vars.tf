@@ -24,7 +24,7 @@ variable "service_name" {
 }
 
 variable "image" {
-  default="gumlooter/dockerized_jupyter:latest"
+  default="gumlooter/dockerized-jupyter:latest"
 }
   
 variable "persistent_mount_path" {
