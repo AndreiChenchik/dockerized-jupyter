@@ -7,7 +7,7 @@ Based on https://hub.docker.com/r/jupyter/datascience-notebook/ from https://git
 ![WYSIWYG](https://github.com/gumlooter/dockerized-jupyter/raw/master/screenshot.png "Funny title")
 
 ## As simple as
-```docker run -p 8888:8888 gumlooter/dockerized_jupyter:latest```
+```docker run -p 8888:8888 gumlooter/dockerized-jupyter:latest```
 
 ## Additions
 
