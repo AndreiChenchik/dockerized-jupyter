@@ -18,7 +18,7 @@ locals {
   args = concat(var.args, ["--NotebookApp.custom_display_url=${var.public_url}","--NotebookApp.password=${var.password}"])
 }
 
-# schedule Jupyter Notebook
+# schedule app deployment
 resource "kubernetes_deployment" "main" {
   # create resource only if there it's required
   count = local.onoff_switch
@@ -64,7 +64,7 @@ resource "kubernetes_deployment" "main" {
           command = var.command
           args = local.args
           
-          # all the jupyter settings
+          # all the settings for container
           env {
             name = var.envs[0].name
             value = var.envs[0].value
@@ -101,16 +101,16 @@ resource "kubernetes_service" "main" {
   }
 
   # wait for deployment
-  depends_on = [kubernetes_deployment.jupyter]
+  depends_on = [kubernetes_deployment.main]
   
   spec {
     selector = {
-      # choose only jupyter
+      # choose our container
       app = var.name
     }
     
     port {
-      # expose main port of jupyter container
+      # expose main port to node
       name = "main-port"
       port = var.jupyter_port
       node_port = var.external_port
