@@ -1,14 +1,15 @@
 # HOW TO USE:
 # add following to your terraform config
-#module "jupyter" {
-#  source = "git@github.com:gumlooter/dockerized-jupyter.git"
-#  count = 1 # 0 to turn it off
-#  node_pool = google_container_node_pool.nodes
-#  persistent_disk = "development-storage"
-#  external_port = 443
-#  public_url = "https://jupyter.example.com"
-#  password = "sha1:74ba40f8a388:c913541b7ee99d15d5ed31d4226bf7838f83a50e"
-#}
+#
+# module "jupyter" {
+#   source = "git@github.com:gumlooter/dockerized-jupyter.git"
+#   count = 1 # 0 to turn it off
+#   node_pool = google_container_node_pool.nodes
+#   persistent_disk = "development-storage"
+#   external_port = 443
+#   public_url = "https://jupyter.example.com"
+#   password = "sha1:74ba40f8a388:c913541b7ee99d15d5ed31d4226bf7838f83a50e"
+# }
 
 # calculate local vars based on input vars
 locals {
@@ -18,12 +19,12 @@ locals {
 }
 
 # schedule Jupyter Notebook
-resource "kubernetes_deployment" "jupyter" {
+resource "kubernetes_deployment" "main" {
   # create resource only if there it's required
   count = local.onoff_switch
 
   metadata {
-    name = var.deployment_name
+    name = var.name
   }
   
   # wait for gke node pool
@@ -35,7 +36,7 @@ resource "kubernetes_deployment" "jupyter" {
 
     selector {
       match_labels = {
-        app = var.app_name
+        app = var.name
       }
     }
 
@@ -43,7 +44,7 @@ resource "kubernetes_deployment" "jupyter" {
     template {
       metadata {
         labels = {
-          app = var.app_name
+          app = var.name
         }
       }
 
@@ -58,7 +59,7 @@ resource "kubernetes_deployment" "jupyter" {
 
         # specify container 
         container {
-          name = var.container_name
+          name = var.name
           image = var.image
           command = var.command
           args = local.args
@@ -91,12 +92,12 @@ resource "kubernetes_deployment" "jupyter" {
 }
 
 # add nodeport to drive external traffic to pod
-resource "kubernetes_service" "node_port" {
+resource "kubernetes_service" "main" {
   # create resource only if there it's required
   count = local.onoff_switch
 
   metadata {
-    name = "jupyter-nodeport"
+    name = var.name
   }
 
   # wait for deployment
@@ -105,7 +106,7 @@ resource "kubernetes_service" "node_port" {
   spec {
     selector = {
       # choose only jupyter
-      app = var.app_name
+      app = var.name
     }
     
     port {

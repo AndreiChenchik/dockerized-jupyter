@@ -7,20 +7,8 @@ variable "persistent_disk" {}
 variable "external_port" {}
 
 #internal variables
-variable "app_name" {
+variable "name" {
   default="jupyter"
-}
-
-variable "container_name" {
-  default="jupyter-container"
-}
-
-variable "deployment_name" {
-  default="jupyter-deployment"
-}
-
-variable "service_name" {
-  default="jupyter-service"
 }
 
 variable "image" {
