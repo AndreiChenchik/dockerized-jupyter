@@ -39,8 +39,8 @@ variable "args" {
     "--notebook-dir=/home/jovyan/work/lab",
     "--NotebookApp.ip='0.0.0.0'",
     "--NotebookApp.token=''",
-    "--NotebookApp.keyfile=/home/jovyan/work/cert/notebook.key",
-    "--NotebookApp.certfile=/home/jovyan/work/cert/notebook.crt"
+    "--NotebookApp.keyfile=/etc/certs/cert_key",
+    "--NotebookApp.certfile=/etc/certs/cert"
   ]
 }
 
@@ -48,7 +48,7 @@ variable "terraform_timeout" {
   default = "20m"
 }
 
-variable "jupyter_port" {
+variable "main_port" {
   default = "8888"
 }
 

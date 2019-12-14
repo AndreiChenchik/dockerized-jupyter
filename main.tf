@@ -8,6 +8,8 @@
 #   persistent_disk = "development-storage"
 #   external_port = 443
 #   public_url = "https://jupyter.example.com"
+#   cert_key = "CERTIFICATE KEY"
+#   cert = "CERTIFICATE"
 #   password = "sha1:74ba40f8a388:c913541b7ee99d15d5ed31d4226bf7838f83a50e"
 # }
 
@@ -56,7 +58,15 @@ resource "kubernetes_deployment" "main" {
             pd_name = var.persistent_disk
           }
         }
-
+        
+        # attach certs
+        volume {
+          name= "config"
+          config_map {
+            name = "cert-config"
+          }
+        }
+        
         # specify container 
         container {
           name = var.name
@@ -72,14 +82,20 @@ resource "kubernetes_deployment" "main" {
           
           # expose ports
           port {
-            container_port = var.jupyter_port
+            container_port = var.main_port
           }
 
           # mount disk to container
           volume_mount {
             mount_path = var.persistent_mount_path
             name = "persistent-volume"
-          }      
+          }
+
+          # mount certs
+          volume_mount {
+            mount_path = "/etc/certs/"
+            name = "config"
+          }       
         }
       }      
     }
@@ -88,6 +104,18 @@ resource "kubernetes_deployment" "main" {
   # terraform: give container more time to load image (it's huge)
   timeouts {
     create = var.terraform_timeout
+  }
+}
+
+# define certs
+resource "kubernetes_config_map" "main" {
+  metadata {
+    name = "cert-config"
+  }
+
+  data = {
+    "cert_key" = var.cert_key
+    "cert" = var.cert
   }
 }
 
@@ -112,7 +140,7 @@ resource "kubernetes_service" "main" {
     port {
       # expose main port to node
       name = "main-port"
-      port = var.jupyter_port
+      port = var.main_port
       node_port = var.external_port
     }    
   
