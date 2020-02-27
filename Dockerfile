@@ -57,7 +57,10 @@ RUN conda install -c conda-forge -y \
 	jupyter nbextension enable toc2/main && \
 	jq -c '.autosavetime_set_starting_interval = true' /home/jovyan/.jupyter/nbconfig/notebook.json > tmp.$$.json && \
 	mv tmp.$$.json /home/jovyan/.jupyter/nbconfig/notebook.json && \
-	nbdime extensions --enable && \
+	jupyter serverextension enable --py nbdime --sys-prefix && \
+	jupyter nbextension install --py nbdime --sys-prefix && \
+	jupyter nbextension enable --py nbdime --sys-prefix && \
+	jupyter labextension install nbdime-jupyterlab --no-build && \
 	jupyter labextension install @ryantam626/jupyterlab_code_formatter --no-build && \
 	jupyter labextension install @jupyterlab/toc --no-build && \
 	jupyter labextension install jupyterlab-plotly --no-build && \
