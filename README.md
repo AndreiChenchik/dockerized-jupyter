@@ -35,7 +35,7 @@ jupyter labextension install plotlywidget@1.3.0 --no-build
 * ROCR
 * xtable
 * stargazer
-* gvlma
+* ~gvlma~ temporary excluded
 
 ### Jupyter/JupyterLab extensions
 * jupyterlab-git (+nbdime)
