@@ -30,12 +30,12 @@ RUN conda install -c conda-forge -y \
 		psycopg2 && \
 	conda install -c plotly -y \
 		plotly && \
-	conda install -c r -y \
-		r-hmisc \
-		r-psych \
-		r-ROCR \
-		r-xtable \
-		r-stargazer && \
+#	conda install -c r -y \
+#		r-hmisc \
+#		r-psych \
+#		r-ROCR \
+#		r-xtable \
+#		r-stargazer && \
 #	conda install -y conda-build && \
 #	conda skeleton cran gvlma && \
 #	conda build --R 3.6.1 r-gvlma && \
