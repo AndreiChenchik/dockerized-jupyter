@@ -3,7 +3,7 @@ FROM jupyter/datascience-notebook
 USER root
 
 RUN apt-get update && \
-	apt-get install -y --no-install-recommends jq openssh-client && \
+	apt-get install -y --no-install-recommends jq openssh-client python3-dev default-libmysqlclient-dev && \
 	rm -rf /var/lib/apt/lists/* && \
 	mkdir -p /usr/local/bin/before-notebook.d && \
 	echo 'node /opt/conda/share/jupyter/lab/staging/node_modules/jsonrpc-ws-proxy/dist/server.js --port 3000 --languageServers /home/jovyan/servers.yml' > /usr/local/bin/lsp.sh && \
@@ -46,6 +46,7 @@ RUN conda install -c conda-forge -y \
 	pip install jupyterlab_sql && \
 	pip install 'tensorflow==1.15' && \
 	pip install dash && \
+	pip install mysqlclient && \
 	jupyter nbextension enable freeze/main && \
 	jupyter nbextension enable autosavetime/main && \
 	jupyter nbextension enable collapsible_headings/main && \
