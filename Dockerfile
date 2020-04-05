@@ -47,6 +47,9 @@ RUN conda install -c conda-forge -y \
 	pip install 'tensorflow==1.15' && \
 	pip install dash && \
 	pip install mysqlclient && \
+	pip install html5lib && \
+	pip install bs4 && \
+	pip install yfinance && \
 	jupyter nbextension enable freeze/main && \
 	jupyter nbextension enable autosavetime/main && \
 	jupyter nbextension enable collapsible_headings/main && \
