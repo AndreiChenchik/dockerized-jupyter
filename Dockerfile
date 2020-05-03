@@ -3,13 +3,17 @@ FROM jupyter/datascience-notebook
 USER root
 
 RUN apt-get update && \
-	apt-get install -y --no-install-recommends jq openssh-client python3-dev default-libmysqlclient-dev && \
+	apt-get install -y --no-install-recommends jq openssh-client python3-dev default-libmysqlclient-dev cron && \
 	rm -rf /var/lib/apt/lists/* && \
 	mkdir -p /usr/local/bin/before-notebook.d && \
 	echo 'node /opt/conda/share/jupyter/lab/staging/node_modules/jsonrpc-ws-proxy/dist/server.js --port 3000 --languageServers /home/jovyan/servers.yml' > /usr/local/bin/lsp.sh && \
 	chmod a+x /usr/local/bin/lsp.sh && \
 	echo 'nohup sh /usr/local/bin/lsp.sh & disown' > /usr/local/bin/before-notebook.d/lsp.sh && \
 	chmod a+x /usr/local/bin/before-notebook.d/lsp.sh
+
+COPY cron-file /etc/cron.d/cron-file
+RUN chmod 0644 /etc/cron.d/cron-file
+RUN crontab /etc/cron.d/cron-file
 
 USER $NB_UID
 
