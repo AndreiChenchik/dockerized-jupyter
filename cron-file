@@ -1,1 +1,1 @@
-0 * * * * /home/jovyan/work/cron.sh >> /var/log/cron.log 2>&1
+0 * * * * jovyan /home/jovyan/work/hourly-cron.sh >> /home/jovyan/work/cron.log 2>&1
