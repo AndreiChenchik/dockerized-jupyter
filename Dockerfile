@@ -54,6 +54,7 @@ RUN conda install -c conda-forge -y \
 	pip install html5lib && \
 	pip install bs4 && \
 	pip install yfinance && \
+	pip install notion && \
 	jupyter nbextension enable freeze/main && \
 	jupyter nbextension enable autosavetime/main && \
 	jupyter nbextension enable collapsible_headings/main && \
